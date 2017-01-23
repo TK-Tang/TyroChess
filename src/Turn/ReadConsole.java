@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 
-import Objects.ChessPiece;
+import Objects.Grid;
 import Objects.King;
 
 public class ReadConsole {
@@ -13,9 +13,20 @@ public class ReadConsole {
     public static void main(String[] args) {
     	
     	HashMap<String, Grid> board = new HashMap();
+   
+    	for (int i = 1 ; i < 9 ; i ++){
+    		for (int j = 97 ; j < 105; j++ ) {
+    			String xy = "" + (char) j + i;
+    			board.put(xy, new Grid( xy, null));
+    		}
+    	}
     	
-    	board.put("e8", new King());
     	
+    	
+    	
+    	// Creating and setting Kings
+    	board.put("e8", new Grid("e8", new King("Black", "e8")));
+    	board.put("d1", new Grid("d1", new King("White", "d1")));
     	
     	
     	
