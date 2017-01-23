@@ -5,6 +5,7 @@ import java.util.List;
 public class Knight implements ChessPiece {
 	
 	String name;
+	String color;
 	String coordinates;
 
 	@Override

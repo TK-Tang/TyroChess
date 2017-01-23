@@ -5,13 +5,16 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 
-import Objects.Grid;
+import Objects.ChessPiece;
+import Objects.King;
 
 public class ReadConsole {
 
     public static void main(String[] args) {
     	
     	HashMap<String, Grid> board = new HashMap();
+    	
+    	board.put("e8", new King());
     	
     	
     	
