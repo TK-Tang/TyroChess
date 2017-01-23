@@ -14,17 +14,6 @@ public class Knight implements ChessPiece {
 	String color;
 	String coordinates;
 
-	@Override
-	public String move() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String returnCoordinates() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public List<String> returnDestinations() {
@@ -33,15 +22,15 @@ public class Knight implements ChessPiece {
 	}
 
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	public String getColor() {
-		return color;
+		return this.color;
 	}
 
 	public String getCoordinates() {
-		return coordinates;
+		return this.coordinates;
 	}
 
 	public void setName(String name) {
@@ -60,6 +49,11 @@ public class Knight implements ChessPiece {
 	public String place() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	@Override
+	public String toString() {
+		return "\nCoordinates: " + this.getCoordinates() + "\nName: " + this.getColor() + " " +  this.getName(); 
 	}
 
 }
