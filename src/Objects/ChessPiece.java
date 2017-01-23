@@ -1,12 +1,11 @@
 package Objects;
 
+import java.util.HashMap;
 import java.util.List;
 
 public interface ChessPiece {
 	
-	public List<String> returnDestinations();
-	
-	public String place();
+	public List<String> returnDestinations(HashMap<String, Grid> board);
 	
 	public String getName();
 	

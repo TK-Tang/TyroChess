@@ -25,14 +25,7 @@ public class ReadConsole {
     		}
     	}
     	
-    	board.get("a6").setChessPiece( new Pawn("B", board.get("a6").getCoordinates()) );
-    	board.get("h3").setChessPiece( new Knight("W", board.get("h3").getCoordinates()) );
-    	board.get("c5").setChessPiece( new Knight("B", board.get("c5").getCoordinates()) );
-    	board.get("g2").setChessPiece( new Pawn("W", board.get("g2").getCoordinates()) );
-
-    	
-    	System.out.println(board.get("g2").getChessPiece());
-    	System.out.println(board.get("a6").getChessPiece());
+    	board.get("g2").setChessPiece( new Pawn("W", board.get("g2").getCoordinates()) );    	
     	
         BufferedReader br = null;
 
@@ -100,6 +93,13 @@ public class ReadConsole {
                 		placePieces(board, pieceCount, br);
                 	}
                 	
+                	for (String key : board.keySet()) {
+                		if (board.get(key).getChessPiece() != null){
+                			ChessPiece cp = board.get(key).getChessPiece();
+                			System.out.println( cp.getColor() + " " + cp.getName() +  " on  " + cp.getCoordinates() +": " + cp.returnDestinations(board));
+                		}
+                	}
+                	
                 } catch (NumberFormatException e){
                 	System.out.println("Input not a valid integer.");
                 }
@@ -125,9 +125,9 @@ public class ReadConsole {
     	while (pieceCount > 0){
     		
     		ChessPieceFactory cpf = new ChessPieceFactory();
+    		int count = pieceCount + 1;
     		
-    		
-    		System.out.println("\nPiece " + pieceCount + "");
+    		System.out.println("\nPiece " + (count - pieceCount) + "");
     		System.out.println("\nEnter type(N/P): ");
     		
     		try {
@@ -200,9 +200,6 @@ public class ReadConsole {
     }
     
     public static boolean checkGrid(String input, HashMap<String, Grid> board){
-    	
-		System.out.println((int) input.charAt(0));
-		System.out.println((Character.getNumericValue(input.charAt(1))));
 		
     	if(input.length() != 2){
     		System.out.println("\n\nYou must specify valid coordinates. Example a6 - It is case sensitive. Put the letter first.\n");
@@ -221,5 +218,6 @@ public class ReadConsole {
     	
     	return false;
     }
+    
 
 }

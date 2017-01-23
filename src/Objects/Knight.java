@@ -1,5 +1,6 @@
 package Objects;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class Knight implements ChessPiece {
@@ -20,7 +21,7 @@ public class Knight implements ChessPiece {
 
 
 	@Override
-	public List<String> returnDestinations() {
+	public List<String> returnDestinations(HashMap<String, Grid> board) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -49,12 +50,6 @@ public class Knight implements ChessPiece {
 	@Override
 	public void setCoordinates(String coordinates) {
 		this.coordinates = coordinates;
-	}
-
-	@Override
-	public String place() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 	
 	@Override
