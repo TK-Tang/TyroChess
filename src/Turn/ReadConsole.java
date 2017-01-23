@@ -3,11 +3,20 @@ package Turn;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.HashMap;
+
+import Objects.Grid;
 
 public class ReadConsole {
 
     public static void main(String[] args) {
-
+    	
+    	HashMap<String, Grid> board = new HashMap();
+    	
+    	
+    	
+    	
+    	
         BufferedReader br = null;
 
         try {
@@ -24,8 +33,13 @@ public class ReadConsole {
                     System.exit(0);
                 }
 
-                System.out.println("input : " + input);
-                System.out.println("-----------\n");
+                for ( int i = 1 ; i != 9 ; i++){
+                	System.out.print(       "   ---------------------------------\n");
+                	System.out.print((9 - i) + "  |   |   |   |   |   |   |   |   |\n");
+                };
+                
+                System.out.print(       "   ---------------------------------\n");
+                System.out.print(       "     a   b   c   d   e   f   g   h\n");
             }
 
         } catch (IOException e) {
