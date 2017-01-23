@@ -4,14 +4,18 @@ import java.util.List;
 
 public interface ChessPiece {
 	
-	List<String> returnDestinations();
+	public List<String> returnDestinations();
 	
-	String place();
+	public String place();
 	
-	String getName();
+	public String getName();
 	
-	String getColor();
+	public String getColor();
 	
-	String getCoordinates();
+	public String getCoordinates();
+	
+	public void setColor(String color);
+	
+	public void setCoordinates(String coordinates);
 
 }
