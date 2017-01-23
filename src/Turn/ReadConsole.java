@@ -3,8 +3,10 @@ package Turn;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.HashMap;
 
+import Objects.ChessPiece;
 import Objects.ChessPieceFactory;
 import Objects.Grid;
 import Objects.Knight;
@@ -23,28 +25,67 @@ public class ReadConsole {
     		}
     	}
     	
-    	board.get("a6").setChessPiece( new Pawn("Black", board.get("a6").getCoordinates()) );
-    	board.get("h3").setChessPiece( new Knight("White", board.get("h3").getCoordinates()) );
+    	board.get("a6").setChessPiece( new Pawn("B", board.get("a6").getCoordinates()) );
+    	board.get("h3").setChessPiece( new Knight("W", board.get("h3").getCoordinates()) );
+    	board.get("c5").setChessPiece( new Knight("B", board.get("c5").getCoordinates()) );
+    	board.get("g2").setChessPiece( new Pawn("W", board.get("g2").getCoordinates()) );
 
+    	
+    	System.out.println(board.get("g2").getChessPiece());
+    	System.out.println(board.get("a6").getChessPiece());
     	
         BufferedReader br = null;
 
         try {
 
             br = new BufferedReader(new InputStreamReader(System.in));
-
+            
+            System.out.println("\n\n\n\n\n\n\n");
+            
             while (true) {
             	
+        		ArrayList<String> cells = new ArrayList<String>();
+        		
+            	for ( int j = 8 ; j > 0 ; j--){
+            		
+        			cells = new ArrayList<String>();
+        			
+            		for (int i = 97 ; i < 105 ; i++){
+
+            			ChessPiece cp = board.get((char) i + "" + j).getChessPiece();
+            			
+            			if (cp != null){
+            				if (cp.getName().equals("Knight")){
+            					if(cp.getColor().equals("B")){
+            						cells.add("K");
+            					} else {
+            						cells.add("k");
+            					}
+            				} else {
+            					if(cp.getColor().equals("B")){
+            						cells.add("P");
+            					} else {
+            						cells.add("p");
+            					}
+            				}
+            			} else {
+            				cells.add(" ");
+            			}
+            		
+            		}
+            		
+            		System.out.print(       "   ---------------------------------\n");
+                	System.out.print(j + "  | " + cells.get(0) + " | " + cells.get(1) + " | " + cells.get(2) + " | " + cells.get(3) + " | " + cells.get(4) + " | " + cells.get(5) + " | " + cells.get(6) + " | " + cells.get(7) + " |\n");
+
+            	}
+            	
+            	
             	int pieceCount = 0;
-                for ( int i = 1 ; i != 9 ; i++){
-                	System.out.print(       "   ---------------------------------\n");
-                	System.out.print((9 - i) + "  |   |   |   |   |   |   |   |   |\n");
-                };
                 
                 System.out.print(       "   ---------------------------------\n");
                 System.out.print(       "     a   b   c   d   e   f   g   h\n");
             	
-                System.out.print("Enter number of pieces: ");
+                System.out.print("\nEnter number of pieces: ");
                 String input = br.readLine();
                 
                 if ("Exit".equals(input)) {
@@ -60,7 +101,7 @@ public class ReadConsole {
                 	}
                 	
                 } catch (NumberFormatException e){
-                	System.out.println("Input not a valid integer");
+                	System.out.println("Input not a valid integer.");
                 }
 
             }
@@ -76,8 +117,6 @@ public class ReadConsole {
                 }
             }
         }
-        
-        
 
     }
     
@@ -119,16 +158,19 @@ public class ReadConsole {
     			e.printStackTrace();
     		}
     		
-    		System.out.println("\n Enter position: ");
+    		System.out.println("\nEnter position: ");
     		
     		try {
     			String input = br.readLine();
     			
     			if (checkGrid(input, board)){
     				cpf.setCoordinates(input);
+        			
+        			board.get(input).setChessPiece(cpf.build());
     			} else {
     				return;
     			}
+
     			
     		} catch (IOException e) {
     			e.printStackTrace();
@@ -143,6 +185,8 @@ public class ReadConsole {
     	if (input.equals("N") || input.equals("P")){
     		return true;
     	}
+    	
+    	System.out.println("\n\nInvalid chess piece type. Must be W or P.\n");
     	return false;
     }
     
@@ -150,14 +194,21 @@ public class ReadConsole {
     	if (input.equals("B") || input.equals("W")){
     		return true;
     	}
+    	
+    	System.out.println("\n\nInvalid color. Must be W or B\n");
     	return false;
     }
     
     public static boolean checkGrid(String input, HashMap<String, Grid> board){
+    	
+		System.out.println((int) input.charAt(0));
+		System.out.println((Character.getNumericValue(input.charAt(1))));
+		
     	if(input.length() != 2){
     		System.out.println("\n\nYou must specify valid coordinates. Example a6 - It is case sensitive. Put the letter first.\n");
     		// Line directly below. Checks if first letter inclusively between a-h and 2nd letter between 1-8
-    	} else if ((int) input.charAt(0) > 96 && (int) input.charAt(0) < 105 && (int) input.charAt(0) > 0 && (int) input.charAt(1) < 9){
+    		
+    	} else if ((int) input.charAt(0) > 96 && (int) input.charAt(0) < 105 && (Character.getNumericValue(input.charAt(1))) > 0 && Character.getNumericValue(input.charAt(1)) < 9){
     		
     		if (board.get(input).getChessPiece() != null){
     			System.out.println("\n\nA chess piece occupies this position. Try again.\n");

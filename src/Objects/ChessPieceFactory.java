@@ -27,5 +27,9 @@ public class ChessPieceFactory {
 	public void setCoordinates(String input){
 		cp.setCoordinates("input");
 	}
+	
+	public ChessPiece build(){
+		return cp;
+	}
 
 }

@@ -7,9 +7,10 @@ public class Pawn implements ChessPiece {
 	public Pawn (){
 		this.name = "Pawn";
 		
+		/*
 		if ((int) this.getCoordinates().charAt(1) == 2 && this.getColor().equals("W") || (int) this.getCoordinates().charAt(1) == 7 && this.getColor().equals("B")){
 			this.moved = true;
-		}
+		} */
 	}
 	
 	public Pawn (String color, String coordinates){
@@ -17,7 +18,9 @@ public class Pawn implements ChessPiece {
 		this.color = color;
 		this.coordinates = coordinates;
 		
-		if ((int) this.getCoordinates().charAt(1) == 2 && this.getColor().equals("W") || (int) this.getCoordinates().charAt(1) == 7 && this.getColor().equals("B")){
+		if (Character.getNumericValue(this.getCoordinates().charAt(1)) == 2 && this.getColor().equals("W") || Character.getNumericValue(this.getCoordinates().charAt(1)) == 7 && this.getColor().equals("B")){
+			this.moved = false;
+		} else {
 			this.moved = true;
 		}
 	}
@@ -25,7 +28,7 @@ public class Pawn implements ChessPiece {
 	private String name;
 	private String color;
 	private String coordinates;
-	private boolean moved = true;
+	private boolean moved;
 
 	@Override
 	public List<String> returnDestinations() {
