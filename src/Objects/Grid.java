@@ -1,5 +1,7 @@
 package Objects;
 
+import java.util.HashMap;
+
 public class Grid {
 	
 	public Grid(String coordinates, ChessPiece cp){
@@ -22,5 +24,35 @@ public class Grid {
 	}
 	public void setCoordinates(String coordinates) {
 		this.coordinates = coordinates;
+	}
+	
+	public Grid goNorth(HashMap<String, Grid> board){
+		char y = this.getCoordinates().charAt(1);
+		System.out.println(this.getCoordinates().charAt(0) + "" + (char)(y + 1));
+		
+		return board.get(this.getCoordinates().charAt(0) + "" + (char)(y + 1));
+	}
+	
+	public Grid goSouth(HashMap<String, Grid> board){
+		char y = this.getCoordinates().charAt(1);
+		System.out.println(this.getCoordinates().charAt(0) + "" + (char)(y - 1));
+		
+		return board.get(this.getCoordinates().charAt(0) + "" + (char)(y - 1));
+	}
+	
+	public Grid goWest(HashMap<String, Grid> board){
+		char x = this.getCoordinates().charAt(0);
+		System.out.println((char) (x + 1) + "" + this.getCoordinates().charAt(1));
+		
+		return board.get((char) (x + 1) + "" + this.getCoordinates().charAt(1));
+	}
+	
+	public Grid goEast(HashMap<String, Grid> board){
+		
+		char x = this.getCoordinates().charAt(0);
+		System.out.println((char) (x - 1) + "" + this.getCoordinates().charAt(1));
+		
+		
+		return board.get((char) (x - 1) + "" + this.getCoordinates().charAt(1));
 	}
 }

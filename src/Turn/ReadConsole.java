@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 
 import Objects.Grid;
+import Objects.Knight;
 
 public class ReadConsole {
 
@@ -20,6 +21,9 @@ public class ReadConsole {
     		}
     	}
     	
+    	Grid x = new Grid("a6", new Knight("Black", "a6"));
+    	System.out.println(x.goNorth(board).goSouth(board).goWest(board).goEast(board).getChessPiece().getName());
+    	
     	
         BufferedReader br = null;
 
@@ -29,10 +33,10 @@ public class ReadConsole {
 
             while (true) {
 
-                System.out.print("Enter something : ");
+                System.out.print("Enter number of pieces: ");
                 String input = br.readLine();
 
-                if ("q".equals(input)) {
+                if ("Exit".equals(input)) {
                     System.out.println("Exit!");
                     System.exit(0);
                 }

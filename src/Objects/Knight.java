@@ -4,6 +4,12 @@ import java.util.List;
 
 public class Knight implements ChessPiece {
 	
+	public Knight(String color, String coordinates){
+		this.name = "Knight";
+		this.color = color;
+		this.coordinates = coordinates;
+	}
+	
 	String name;
 	String color;
 	String coordinates;
@@ -48,6 +54,12 @@ public class Knight implements ChessPiece {
 
 	public void setCoordinates(String coordinates) {
 		this.coordinates = coordinates;
+	}
+
+	@Override
+	public String place() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
